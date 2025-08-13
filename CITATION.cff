@@ -60,10 +60,10 @@ authors:
     orcid: 'https://orcid.org/0000-0002-8572-9268'
 identifiers:
   - type: doi
-    value: 10.1234/zenodo.4321
+    value: 10.5281/zenodo.16834953
     description: Zenodo archive (V1.0.0)
   - type: doi
-    value: 10.1234/zenodo.4321
+    value: 10.5281/zenodo.16834951
     description: Zenodo Archive (latest version)
 repository-code: 'https://github.com/MeLiDosProject/BaezaEtAl_Dataset_2025'
 url: 'https://www.melidos.eu'

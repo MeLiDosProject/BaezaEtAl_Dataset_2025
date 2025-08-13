@@ -12,8 +12,7 @@
 
 <!-- badges: start -->
 
-<!-- [![DOI](https://zenodo.org/badge/1028303903.svg)](https://doi.org/10.5281/zenodo.16568109) -->
-
+[![DOI](https://zenodo.org/badge/1037153244.svg)](https://doi.org/10.5281/zenodo.16834951)
 <!-- badges: end -->
 
 <figure>
@@ -60,7 +59,7 @@ APA reference:
 > (2025). Personal light exposure dataset for Madrid, Spain (Version
 > 1.0.0) \[Data set\]. URL:
 > <https://github.com/MeLiDosProject/BaezaEtAl_Dataset_2025>. DOI:
-> doi.org/xyz
+> doi.org/10.5281/zenodo.16834951
 
 ## Summary of the dataset
 
