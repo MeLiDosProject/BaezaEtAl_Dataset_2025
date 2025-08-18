@@ -81,9 +81,6 @@ The following files are included with this Dataset:
 - `data/Study_dates_MeLiDos_FUSPCEU.xlsx`: Recruitment dates to clean
   light exposure recordings
 
-- `questionnaires`: Folder containing Turkish questionnaire translations
-  and their English codings
-
 - `data`: Folder with measurement and project data in the following
   structure:
 
