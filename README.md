@@ -100,7 +100,6 @@ The following files are included with this Dataset:
                              actlumus_wrist/
                              actlumus_head/
                              actlumus_chest/
-                             actlumus_environment/
                              currentconditions/
                              exercisediary/
                              experiencelog/
