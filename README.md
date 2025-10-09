@@ -8,12 +8,11 @@
 
 ### Personal light exposure dataset for Madrid, Spain; collected by Fundación Universitaria CEU San Pablo (FUSP CEU) following the protocol of Guidolin et al. 2024 (MeLiDos field study)
 
-**Version v1.0.0**
+**Version v1.0.1**
 
 <!-- badges: start -->
 
-<!-- [![DOI](https://zenodo.org/badge/1037153244.svg)](https://doi.org/10.5281/zenodo.16834951) -->
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16834951.svg)](https://doi.org/10.5281/zenodo.16834951)
 <!-- badges: end -->
 
 <figure>
@@ -60,7 +59,7 @@ APA reference:
 > (2025). Personal light exposure dataset for Madrid, Spain (Version
 > 1.0.0) \[Data set\]. URL:
 > <https://github.com/MeLiDosProject/BaezaEtAl_Dataset_2025>. DOI:
-> doi.org/—
+> doi.org/10.5281/zenodo.16834951
 
 ## Summary of the dataset
 
