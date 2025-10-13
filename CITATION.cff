@@ -61,7 +61,7 @@ authors:
 identifiers:
   - type: doi
     value: 10.5281/zenodo.17303713
-    description: Zenodo archive (V1.0.0)
+    description: Zenodo archive (V1.0.1)
   - type: doi
     value: 10.5281/zenodo.16834951
     description: Zenodo Archive (latest version)
@@ -83,5 +83,5 @@ keywords:
   - melanopic
   - naturalistic setting
 license: CC-BY-4.0
-version: 1.0.0
+version: 1.0.1
 date-released: '2025-10-07'
