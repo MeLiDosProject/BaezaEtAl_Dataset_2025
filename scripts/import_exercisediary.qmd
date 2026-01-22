@@ -158,6 +158,10 @@ attr(data$Date, "label") <- "Date"
 data <-
   data |> 
   mutate(across(c(commute, sedentary), \(x) as.difftime(x, unit = "mins")))
+
+data <-
+data |> 
+  add_col_labels(codebook, var_col = `Variable / Field Name`, label_col = `Field Label`)
 ```
 
 
