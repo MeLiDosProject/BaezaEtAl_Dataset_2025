@@ -46,7 +46,8 @@ codebook <-
   prepare_codebook("MeLiDosDischargeQuestionnaire_DataDictionary_2024-10-16.csv",
                    "your_light_behaviour_leba")
 #collect files
-files <- filefinder("discharge",individual = FALSE) |> 
+files <- filefinder("discharge",individual = FALSE)
+files <- files |> 
           subset(grepl("LEBA", files))
 #import files
 data <- 
