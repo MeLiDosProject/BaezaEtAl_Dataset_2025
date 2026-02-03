@@ -90,7 +90,7 @@ alt="Summary table of the morning sleep diary" />
 diary</figcaption>
 </figure>
 
-## Chronotype
+### Chronotype
 
 <figure>
 <img src="output/tables/table_chronotype.png"
@@ -106,6 +106,15 @@ questionnaires</figcaption>
 alt="Summary table of the wear log" />
 <figcaption aria-hidden="true">Summary table of the wear
 log</figcaption>
+</figure>
+
+### Wellbeing diary
+
+<figure>
+<img src="output/tables/table_wellbeingdiary.png"
+alt="Summary table of the evening wellbeing diary (WHO-5)" />
+<figcaption aria-hidden="true">Summary table of the evening wellbeing
+diary (WHO-5)</figcaption>
 </figure>
 
 ### Exercise diary
