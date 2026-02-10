@@ -1,0 +1,256 @@
+---
+title: "Import light chest"
+author: "Johannes Zauner"
+format: 
+  html:
+    self-contained: true
+    code-tools: true
+---
+
+# Preface
+
+This is a work-in-progress descriptive analysis of the `BaezaEtAl2025` dataset.
+
+```{r}
+#| label: setup
+#| include: false
+library(LightLogR)
+library(glue)
+library(tidyverse)
+library(gt)
+library(readxl)
+library(cowplot)
+library(legendry)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(sf)
+library(patchwork)
+library(rlang)
+library(here)
+
+remote <- 
+  "https://raw.githubusercontent.com/MeLiDosProject/Data_Metadata_Conventions/main/scripts/"
+
+c(
+  "filefinder",
+  "general_parameters",
+  "overview_plot"
+) |> walk(\(x) source(paste0(remote, x, ".R")))
+
+site <- "FUSPCEU"
+```
+
+# Overview
+
+## Data import: wearable data
+
+The first step is the import of wearable data from the `chest` position (mounted on chest).
+
+```{r}
+#| label: "general information"
+#regex to extract participant Id and wearing position
+# pattern <- "[A-Z]+_S[0-9]{3}_[hcw]"
+#regex to extract participant Id
+pattern <- "[A-Z]+_S[0-9]{3}"
+```
+
+```{r}
+files <- filefinder("actlumus_chest", continuous = TRUE, negate = "Report")
+```
+
+```{r}
+data <- 
+  import$ActLumus(files[c(1:18, 20, 22:23)], tzs[site], auto.id = pattern,
+                  dst_adjustment = TRUE)
+```
+
+Two files need further adjustment, as they contains timestamps from yr 2000 and 2008. The former is a typical issue with `ActLumus` devices after their battery is empty. We will use the other two wearing positions (wrist and head) to derive a valid offset
+
+```{r}
+#| fig-height: 20
+#| fig-width: 10
+#getting all wearing positions
+files <- list.dirs("../data/raw/individual/FUSPCEU_S023/continuous", full.names = TRUE)
+files <- files[str_detect(files, "actlumus")] |> list.files(full.names = TRUE)
+files <- files[str_detect(files, "Report", negate = TRUE)]
+
+#loading the data
+pattern <- "[A-Z]+_S[0-9]{3}_[hcw]"
+data2 <- 
+  import$ActLumus(files, tzs[site], auto.id = pattern,
+                  dst_adjustment = TRUE, not.before = "1970-01-01")
+
+data2 |> 
+  mutate(
+    Datetime = case_when(
+      Id == "FUSPCEU_S023_c" ~ Datetime + dyears(25) + ddays(27) + dhours(7) + dminutes(45),
+      Id == "FUSPCEU_S023_w" ~ Datetime + dhours(4),
+      .default = Datetime)
+    ) |> 
+  gg_day(geom = "line", aes_col = Id) |> 
+  gg_photoperiod(coordinates[[site]])
+
+data2 <- 
+data2 |> 
+  mutate(
+    Datetime = case_when(
+      Id == "FUSPCEU_S023_c" ~ Datetime + dyears(25) + ddays(27) + dhours(7) + dminutes(45),
+      Id == "FUSPCEU_S023_w" ~ Datetime + dhours(4),
+      .default = Datetime)
+    )
+
+
+```
+
+```{r}
+#| fig-height: 20
+#| fig-width: 10
+#getting all wearing positions
+files <- list.dirs("../data/raw/individual/FUSPCEU_S021/continuous", full.names = TRUE)
+files <- files[str_detect(files, "actlumus")] |> list.files(full.names = TRUE)
+files <- files[str_detect(files, "Report", negate = TRUE)]
+
+#loading the data
+pattern <- "[A-Z]+_S[0-9]{3}_[hcw]"
+data3 <- 
+  import$ActLumus(files, tzs[site], auto.id = pattern,
+                  dst_adjustment = TRUE)
+
+data3 |> 
+  mutate(
+    Datetime = case_when(
+      Id == "FUSPCEU_S021_c" ~ Datetime + dyears(17) + ddays(13) + dhours(4),
+      Id == "FUSPCEU_S021_w" ~ Datetime + dhours(4),
+      .default = Datetime)
+    ) |> 
+  gg_day(geom = "line", aes_col = Id, linewidth = 0.5) |> 
+  gg_photoperiod(coordinates[[site]])+
+  coord_cartesian(xlim = c(20,24)*3600)
+
+data3 <- 
+data3 |> 
+  mutate(
+    Datetime = case_when(
+      # Id == "FUSPCEU_S021_c" ~ Datetime + dyears(17) + ddays(13) + dhours(4),
+      Id == "FUSPCEU_S021_w" ~ Datetime + dhours(4),
+      .default = Datetime)
+    ) |> 
+  gg_day(geom = "line", aes_col = Id, linewidth = 0.5) |> 
+  gg_photoperiod(coordinates[[site]])+
+  coord_cartesian(xlim = c(20,24)*3600)
+
+
+```
+
+Taken together, S023 is solvable through careful shifting, S021 is not. Thus, we will discard the latter and keep the former.
+
+```{r}
+data2 <- 
+data2 |> 
+  sample_groups(sample = 1) |> 
+  mutate(Id = "FUSPCEU_S023")
+
+data <-
+  join_datasets(data, data2)
+rm(data2)
+```
+
+## Regularizing data
+
+In the first step, we will trim the data by the study time.
+
+```{r}
+path_study_dates <- paste0("../data/Study_dates_MeLiDos_", site, ".xlsx")
+
+#import table with study times
+Study_dates <- read_excel(path_study_dates)
+#gather the important information
+Study_dates <-
+  Study_dates |> 
+    rename(Id = subjectID_device, start = datetime_trial_start, end = datetime_trial_end) |> 
+    select(Id, start, end) |> 
+    mutate(across(c(start, end), \(x) force_tz(x, tzs[site])),
+           trial = TRUE) |> 
+    filter(str_detect(Id, "_c$")) |>
+    mutate(Id = str_remove(Id, "_c$")) |> 
+  group_by(Id)
+
+#add the trim information to the dataset and filter by it
+data <- 
+  data |> 
+  add_states(Study_dates) |> 
+  dplyr::filter(trial) |> 
+  select(-trial)
+
+data |> gg_overview()
+```
+
+
+```{r}
+data |> has_gaps()
+data |> has_irregulars()
+data |> gg_gaps(group.by.days = TRUE, show.irregulars = TRUE, full.days = FALSE)
+```
+
+```{r}
+#| fig-height: 15
+#| fig-width: 5
+data_cleaned <- 
+data |> 
+  gap_handler(full.days = TRUE)
+data_cleaned |> gap_table(MEDI) |> cols_hide(ends_with("_n"))
+```
+
+## Exporting values
+
+```{r}
+data_cleaned <- 
+  data_cleaned |> mutate(position = "chest")
+
+light_chest_1min <- 
+data_cleaned |> 
+  aggregate_Datetime("1 minute", numeric.handler = \(x) mean(x, na.rm = TRUE)) |> 
+  remove_partial_data(MEDI, threshold.missing = "3 hours", by.date = TRUE)
+
+light_chest <- data_cleaned
+
+save(light_chest_1min, file = "../data/imported/light/light_chest_1minute.RData")
+save(light_chest, file = "../data/imported/light/light_chest.RData")
+```
+
+## Visualization
+
+```{r}
+#| warning: false
+#| message: false
+#| fig-height: 8
+#| fig-width: 12
+
+prefix <- paste0(site, "_")
+
+data_cleaned |> 
+  mutate(Id = Id |> fct_relabel(\(x) str_remove(x, prefix))) |> 
+grand_overview(coordinates[[site]], cities[[site]], countries[[site]], 
+               country_colors[[site]], photoperiod_sequence = 1)
+
+```
+
+## Stats
+
+### Summary table
+
+```{r}
+#| message: false
+#| warning: false
+
+summary_table(
+  data_cleaned, 
+  coordinates = coordinates[[site]], 
+  location = cities[[site]], 
+  site = countries[[site]], 
+  color = country_colors[[site]],
+  histograms = TRUE
+)
+
+```
+
