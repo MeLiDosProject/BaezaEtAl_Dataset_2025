@@ -1,51 +1,51 @@
 record_id,type,type_english
 FUSPCEU_S003,NA,NA
-FUSPCEU_S003,Andar,Andar
+FUSPCEU_S003,Andar,walking
 FUSPCEU_S004,NA,NA
-FUSPCEU_S004,Andar,Andar
-FUSPCEU_S004,andar,floor
+FUSPCEU_S004,Andar,walking
+FUSPCEU_S004,andar,walking
 FUSPCEU_S004,Ejercicio de fuerza,Strength exercise
-FUSPCEU_S004,trote,prank call
-FUSPCEU_S004,fuerza,force
+FUSPCEU_S004,trote,jogging
+FUSPCEU_S004,fuerza,Strength
 FUSPCEU_S004,paseo,walk
 FUSPCEU_S005,NA,NA
 FUSPCEU_S005,caminata,walking
 FUSPCEU_S005,un paseo,a walk
-FUSPCEU_S005,paseo,walk
+FUSPCEU_S005,paseo,a walk
 FUSPCEU_S006,NA,NA
-FUSPCEU_S006,Pádel,Padel
-FUSPCEU_S006,tabata,tabata
-FUSPCEU_S006,mantenimiento,maintenance
+FUSPCEU_S006,Pádel,paddel
+FUSPCEU_S006,tabata,tabata-style workout
+FUSPCEU_S006,mantenimiento,maintenance exercise
 FUSPCEU_S007,NA,NA
-FUSPCEU_S007,caminar,to walk
-FUSPCEU_S007,Cardio,Cardiology
+FUSPCEU_S007,caminar,walking
+FUSPCEU_S007,Cardio,cardio exercise
 FUSPCEU_S007,caminar y subir escaleras,walking and climbing stairs
 FUSPCEU_S008,NA,NA
 FUSPCEU_S009,NA,NA
-FUSPCEU_S009,tablas de ejercicios en casa con,at-home exercise routines with
+FUSPCEU_S009,tablas de ejercicios en casa con,home workout routines
 FUSPCEU_S009,ejercicios,exercises
-FUSPCEU_S009,pasear por el parque,walking in the park
+FUSPCEU_S009,pasear por el parque,a walk in the park
 FUSPCEU_S010,NA,NA
-FUSPCEU_S010,andar,floor
+FUSPCEU_S010,andar,walking
 FUSPCEU_S011,NA,NA
-FUSPCEU_S011,Caminar,Walk
+FUSPCEU_S011,Caminar,walking
 FUSPCEU_S012,NA,NA
-FUSPCEU_S012,andar,walk
+FUSPCEU_S012,andar,walking
 FUSPCEU_S012,caminata y ejercicios de fuerza,walking and strength exercises
 FUSPCEU_S013,NA,NA
 FUSPCEU_S013,Paseo por el parque de una hora,One-hour walk in the park
-FUSPCEU_S013,Paseo con mi abuela y mi madre,Outing with my grandmother and my mother
+FUSPCEU_S013,Paseo con mi abuela y mi madre,A walk with my grandmother and mother.
 FUSPCEU_S014,NA,NA
 FUSPCEU_S015,NA,NA
 FUSPCEU_S015,Clase de pilates,Pilates class
 FUSPCEU_S015,pilates,pilates
 FUSPCEU_S015,Pilates,Pilates
-FUSPCEU_S015,Andar,Walk
+FUSPCEU_S015,Andar,walking
 FUSPCEU_S015,andar,walking
-FUSPCEU_S015,andar y ejercicios en casa,walking and exercises at home
+FUSPCEU_S015,andar y ejercicios en casa,walking and home workout
 FUSPCEU_S016,NA,NA
 FUSPCEU_S016,caminar fuera,walking outside
-FUSPCEU_S016,caminar,to walk
+FUSPCEU_S016,caminar,walking
 FUSPCEU_S016,caminar y correr,walking and running
 FUSPCEU_S017,NA,NA
 FUSPCEU_S017,Estiramientos y andar.,Stretching and walking.
@@ -54,28 +54,28 @@ FUSPCEU_S018,NA,NA
 FUSPCEU_S018,gymnasio,gymnasium
 FUSPCEU_S018,bodybuilding,bodybuilding
 FUSPCEU_S019,NA,NA
-FUSPCEU_S019,He dado un paseo por la ciudad,I have taken a walk around the city
-FUSPCEU_S019,caminata,walk
-FUSPCEU_S019,Caminata,Walk
+FUSPCEU_S019,He dado un paseo por la ciudad,walking around the city
+FUSPCEU_S019,caminata,walking
+FUSPCEU_S019,Caminata,walking
 FUSPCEU_S020,NA,NA
-FUSPCEU_S020,Footing,Footing
+FUSPCEU_S020,Footing,jogging
 FUSPCEU_S020,Caminar,Walking
-FUSPCEU_S020,Paseo,Walk
+FUSPCEU_S020,Paseo,walking
 FUSPCEU_S021,NA,NA
 FUSPCEU_S022,NA,NA
 FUSPCEU_S022,dar un paseo por el parque,take a walk in the park
 FUSPCEU_S022,pilates y meditación,pilates and meditation
-FUSPCEU_S022,padel,padel
-FUSPCEU_S022,"pesas, cardio","weights, cardio"
+FUSPCEU_S022,padel,paddel
+FUSPCEU_S022,"pesas, cardio",weight exercise and cardio exercise
 FUSPCEU_S023,NA,NA
 FUSPCEU_S023,fitness,fitness
 FUSPCEU_S024,NA,NA
-FUSPCEU_S024,cardio por 45 minutos,cardio for 45 minutes
-FUSPCEU_S024,cardio,cardiac
-FUSPCEU_S024,caminar,walk
+FUSPCEU_S024,cardio por 45 minutos,cardio exercise for 45 minutes
+FUSPCEU_S024,cardio,cardio exercise 
+FUSPCEU_S024,caminar,walking
 FUSPCEU_S024,caminar por madrid,walking around Madrid
 FUSPCEU_S025,NA,NA
 FUSPCEU_S025,Un paseo por el parque,A walk in the park
-FUSPCEU_S025,Paseo por el parque después de comer y danza en clase de teatro,Walk in the park after eating and dance in theater class
+FUSPCEU_S025,Paseo por el parque después de comer y danza en clase de teatro,a walk in the park after eating and dance in theater class
 FUSPCEU_S025,clase colectiva gimnasio,group class at gym
-FUSPCEU_S025,Paseo y bailar,Stroll and dance
+FUSPCEU_S025,Paseo y bailar,walking and dancing
